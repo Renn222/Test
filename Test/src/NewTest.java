@@ -8,22 +8,65 @@ import javax.swing.JPanel;
 public class NewTest extends JFrame 
 {
 	TestPanel boardPanel;
+	private int width;
+	private int height;
+	private int difficulty = 2;
+	private int numOfMines;
+	
     public NewTest() 
     {
-            createFrame();
-            
-            boardPanel = new TestPanel(this);
-            pack();
-            setVisible(true);
+		decideBoardDimensions();
+        createFrame();
+        boardPanel = new TestPanel(this);
+
+        pack();
+        setVisible(true);
     }
     
     private void createFrame()
     {
-    	setLayout(new GridLayout(8,8, 3, 3));
-        setPreferredSize(new Dimension(800,600));
+    	int tilePixelLength = 40;
+    	setLayout(new GridLayout(width, height, 3, 3));
+        setPreferredSize(new Dimension(height * tilePixelLength, width * tilePixelLength));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
+       
+    private void decideBoardDimensions()
+	{
+		switch(difficulty)
+		{
+			case 0:
+				width = 8;
+				height = 8;
+				numOfMines = 10;
+				break;
+			case 1:
+				width = 16;
+				height = 16;
+				numOfMines = 40;
+				break;
+			case 2:
+				width = 16;
+				height = 30;
+				numOfMines = 40;
+				break;
+		}
+	}
+   
+    public int getTileWidth()
+	{
+		return width;
+	}
+	
+	public int getTileHeight()
+	{
+		return height;
+	}
+	
+	public int getNumOfMines()
+	{
+		return numOfMines;
+	}
     public static void main(String[] args)
     {
             new NewTest();

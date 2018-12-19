@@ -6,11 +6,18 @@ import javax.swing.JPanel;
 
 public class TestPanel extends JPanel
 {
+	private int width;
+	private int height;
+	private int numOfMines;
 	public TestPanel(NewTest game) 
 	{
-		 for (int i = 0; i < 8; i++)
+		width = game.getTileWidth();
+		height = game.getTileHeight();
+		numOfMines = game.getNumOfMines();
+		
+		 for (int i = 0; i < width; i++)
          {
-                 for (int j = 0; j < 8; j++)
+                 for (int j = 0; j < height; j++)
                  {
                          TestTile tile = new TestTile(this);
                          tile.setBackground(Color.green);
@@ -18,4 +25,6 @@ public class TestPanel extends JPanel
                  }
          }
 	}
+	
+	
 }
